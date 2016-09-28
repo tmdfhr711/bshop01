@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+
+    <TableRow
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ble_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:layout_weight="0.5"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ble_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:layout_weight="0.5"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ble_uuid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:layout_weight="0.5"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ble_major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:layout_weight="0.5"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ble_minor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:layout_weight="0.5"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ble_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:layout_weight="0.5"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/ble_connect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="연결"
+            />
+    </TableRow>
+</TableLayout>
