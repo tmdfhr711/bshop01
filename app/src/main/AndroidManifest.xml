@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="example.android.laioh.bshop.locationapi.maps.permission.MAPS_RECEIVE"/>
+
     <permission
         android:name="example.android.laioh.bshop.locationapi.maps.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
@@ -37,9 +38,15 @@
         </activity>
         <activity android:name=".activity.WriteShopInfoActivity">
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBtKhSczD3Avq7LZrrzP_2oCc_kFYO4rl0"/>
+
+        <activity android:name=".activity.MyPageActivity">
+        </activity>
+        <activity android:name=".activity.MyShopListActivity">
+        </activity>
     </application>
 
 </manifest>

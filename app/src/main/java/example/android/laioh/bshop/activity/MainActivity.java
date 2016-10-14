@@ -127,7 +127,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this, MyPageActivity.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(MainActivity.this, WriteShopInfoActivity.class);
             startActivity(intent);
