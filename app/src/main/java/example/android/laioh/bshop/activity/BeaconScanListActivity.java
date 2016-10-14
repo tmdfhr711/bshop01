@@ -63,7 +63,7 @@ public class BeaconScanListActivity extends AppCompatActivity {
             }
         });
 
-        centralManager.startScanning();
+        //centralManager.startScanning();
 
         mAdapter = new BeaconScanListAdapter(this);
         listview.setAdapter(mAdapter);
@@ -87,4 +87,24 @@ public class BeaconScanListActivity extends AppCompatActivity {
         });
         mBeaconList = new ArrayList<>();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        centralManager.stopScanning();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        centralManager.stopScanning();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        centralManager.startScanning();
+    }
+
 }
