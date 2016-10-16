@@ -47,6 +47,16 @@
         </activity>
         <activity android:name=".activity.MyShopListActivity">
         </activity>
+
+        <service
+            android:name=".service.NotificationService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".activity.NotifiCouponActivity"
+                  android:theme="@style/Theme.AppCompat.Transparent">
+        </activity>
     </application>
 
 </manifest>
