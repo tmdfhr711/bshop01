@@ -11,7 +11,7 @@ import example.android.laioh.bshop.R;
 public class MyPageActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button myshop_button;
-
+    private Button mycoupon_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +22,11 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
 
     private void init(){
         myshop_button = (Button) findViewById(R.id.mypage_myshop_button);
+        mycoupon_button = (Button) findViewById(R.id.mypage_mycoupon_button);
 
         myshop_button.setOnClickListener(this);
+        mycoupon_button.setOnClickListener(this);
+
     }
 
 
@@ -32,8 +35,14 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mypage_myshop_button:
-                Intent intent = new Intent(MyPageActivity.this, MyShopListActivity.class);
-                startActivity(intent);
+                Intent ShopList = new Intent(MyPageActivity.this, MyShopListActivity.class);
+                startActivity(ShopList);
+                finish();
+                break;
+
+            case R.id.mypage_mycoupon_button:
+                Intent couponList = new Intent(MyPageActivity.this, MyCouponListActivity.class);
+                startActivity(couponList);
                 finish();
                 break;
         }

@@ -13,9 +13,22 @@
     tools:context=".activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <Button
-        android:id="@+id/scan_button"
+    <ListView
+        android:id="@+id/main_shop_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="비콘스캔"/>
+        android:layout_height="match_parent">
+    </ListView>
+    <RelativeLayout
+        android:id="@+id/mapview_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_margin="16dp"
+            class="com.google.android.gms.maps.MapFragment" />
+    </RelativeLayout>
+
 </RelativeLayout>

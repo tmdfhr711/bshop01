@@ -31,6 +31,7 @@
 
         <TextView
             android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
             android:id="@+id/coupon_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +39,7 @@
 
         <TextView
             android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
             android:id="@+id/coupon_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

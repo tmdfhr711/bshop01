@@ -8,14 +8,12 @@ public class ShopInformation {
     private String name;
     private String phone;
     private String photo;
-
-
-
     private String address;
     private String lat;
     private String lon;
+    private String cate;
 
-    public ShopInformation(String id, String name, String phone, String photo, String address, String lat, String lon) {
+    public ShopInformation(String id, String name, String phone, String photo, String address, String lat, String lon, String cate) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -23,6 +21,7 @@ public class ShopInformation {
         this.address = address;
         this.lat = lat;
         this.lon = lon;
+        this.cate = cate;
     }
 
     public String getId() {
@@ -51,5 +50,9 @@ public class ShopInformation {
 
     public String getLon() {
         return lon;
+    }
+
+    public String getCate() {
+        return cate;
     }
 }

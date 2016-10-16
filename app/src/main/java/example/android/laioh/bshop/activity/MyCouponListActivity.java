@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,53 +15,57 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import example.android.laioh.bshop.R;
+import example.android.laioh.bshop.adapter.MyCouponListAdapter;
 import example.android.laioh.bshop.adapter.MyShopListAdapter;
+import example.android.laioh.bshop.model.Coupon;
 import example.android.laioh.bshop.model.ShopInformation;
 import example.android.laioh.bshop.util.RequestHandler;
 
-public class MyShopListActivity extends AppCompatActivity {
+public class MyCouponListActivity extends AppCompatActivity {
 
-    private MyShopListAdapter mAdapter;
-    private ArrayList<ShopInformation> items;
 
-    private ListView shop_listview;
+    private MyCouponListAdapter mAdapter;
+    private ArrayList<Coupon> items;
+
+    private ListView coupon_listview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_shop_list);
+        setContentView(R.layout.activity_my_coupon_list);
 
         init();
-        getShopListFromServer();
+        getCouponDataFromServer();
     }
 
     private void init(){
-        shop_listview = (ListView) findViewById(R.id.myshop_listview);
+        coupon_listview = (ListView) findViewById(R.id.mycoupon_listview);
         items = new ArrayList<>();
-}
+    }
 
-    private void getShopListFromServer(){
-        GetMyShopListTask task = new GetMyShopListTask();
-        task.execute("*");
+    private void getCouponDataFromServer(){
+        GetMyCouponListTask task = new GetMyCouponListTask();
+        task.execute("user1");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(MyShopListActivity.this, MyPageActivity.class);
+        Intent intent = new Intent(MyCouponListActivity.this, MyPageActivity.class);
         startActivity(intent);
         finish();
     }
 
-    class GetMyShopListTask extends AsyncTask<String, Void, Void> {
+    class GetMyCouponListTask extends AsyncTask<String, Void, Void> {
 
-        final String SERVER_URL = "http://210.117.181.66:8080/BShop/_bshop_myshop_list.php";
+        final String SERVER_URL = "http://210.117.181.66:8080/BShop/_bshop_mycoupon_list.php";
         RequestHandler rh = new RequestHandler();
         private ProgressDialog loading;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            loading = new ProgressDialog(MyShopListActivity.this);
+            loading = new ProgressDialog(MyCouponListActivity.this);
             loading.setMessage("목록 불러오는중...");
             loading.setCancelable(false);
             loading.show();
@@ -72,8 +74,8 @@ public class MyShopListActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mAdapter = new MyShopListAdapter(MyShopListActivity.this, items);
-            shop_listview.setAdapter(mAdapter);
+            mAdapter = new MyCouponListAdapter(MyCouponListActivity.this, items);
+            coupon_listview.setAdapter(mAdapter);
             loading.dismiss();
         }
 
@@ -97,16 +99,15 @@ public class MyShopListActivity extends AppCompatActivity {
                 for (int i = 0; i < ja.length(); i++) {
                     JSONObject order = ja.getJSONObject(i);
 
-                    String id = order.get("id").toString();
-                    String name = order.get("name").toString();
-                    String phone = order.get("phone").toString();
-                    String photo = order.get("photo").toString();
-                    String address = order.get("address").toString();
-                    String lat = order.get("lat").toString();
-                    String lon = order.get("lon").toString();
-                    String cate = order.get("cate").toString();
+                    String couponid = order.get("couponid").toString();
+                    String shopname = order.get("shopname").toString();
+                    String photo = order.get("shopphoto").toString();
+                    String eventname = order.get("eventname").toString();
+                    String eventcontent = order.get("eventcontent").toString();
+                    String iscoupon = order.get("iscoupon").toString();
 
-                    items.add(new ShopInformation(id, name, phone, photo, address, lat,lon,cate));
+                    items.add(new Coupon(couponid, shopname, photo, eventname, eventcontent, iscoupon));
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();

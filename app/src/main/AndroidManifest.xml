@@ -54,8 +54,11 @@
             android:exported="true">
         </service>
 
-        <activity android:name=".activity.NotifiCouponActivity"
-                  android:theme="@style/Theme.AppCompat.Transparent">
+        <activity
+            android:name=".activity.NotifiCouponActivity"
+            android:theme="@style/Theme.AppCompat.Transparent">
+        </activity>
+        <activity android:name=".activity.MyCouponListActivity">
         </activity>
     </application>
 

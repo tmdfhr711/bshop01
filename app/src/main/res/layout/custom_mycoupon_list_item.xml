@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_margin="@dimen/activity_vertical_margin"
               android:background="#EEEEEE"
-              >
+    >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:padding="16dp"
-        android:id="@+id/custom_shopphoto"
+        android:id="@+id/mycoupon_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 
@@ -19,7 +18,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/custom_shopname"
+            android:id="@+id/mycoupon_shopname"
             android:text="가게명"
             android:textSize="30dp"
             android:gravity="center"
@@ -27,13 +26,28 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/custom_shopaddress"
+            android:id="@+id/mycoupon_name"
             android:text="주소"
             android:gravity="center"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/mycoupon_content"
+            android:text="주소"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/mycoupon_isbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="사용하기"/>
     </LinearLayout>
+
 
 
 </LinearLayout>
