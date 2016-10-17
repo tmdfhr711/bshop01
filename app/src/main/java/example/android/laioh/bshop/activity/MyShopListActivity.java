@@ -43,7 +43,7 @@ public class MyShopListActivity extends AppCompatActivity {
 
     private void getShopListFromServer(){
         GetMyShopListTask task = new GetMyShopListTask();
-        task.execute("*");
+        task.execute("user1");
     }
 
     @Override
@@ -86,6 +86,7 @@ public class MyShopListActivity extends AppCompatActivity {
             String query = params[0];
 
             data.put("user_id", query);
+            data.put("flag", "myshop");
 
             String result = rh.sendPostRequest(SERVER_URL,data);
             Log.e("result Data", result.toString());

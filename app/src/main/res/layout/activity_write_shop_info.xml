@@ -55,28 +55,13 @@
             <TableRow>
                 <TextView
 
-                    android:text="이벤트명 : "
+                    android:text="카테고리 : "
                     android:layout_weight="0.2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <EditText
-                    android:id="@+id/shopinfo_eventname"
-                    android:layout_weight="0.8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
-
-            <TableRow>
-                <TextView
-
-                    android:text="이벤트내용 : "
-                    android:layout_weight="0.2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <EditText
-                    android:id="@+id/shopinfo_eventcontent"
+                    android:id="@+id/shopinfo_cate"
                     android:layout_weight="0.8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

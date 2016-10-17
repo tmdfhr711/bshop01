@@ -54,8 +54,7 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
     private ImageView shop_image;
     private EditText shop_name;
     private EditText shop_phone;
-    private EditText event_name;
-    private EditText event_content;
+    private EditText category;
     private Button regi_button;
     private TextView shop_address;
 
@@ -103,8 +102,7 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
         shop_image = (ImageView) findViewById(R.id.shopinfo_mainImage);
         shop_name = (EditText) findViewById(R.id.shopinfo_name);
         shop_phone = (EditText) findViewById(R.id.shopinfo_phone);
-        event_name = (EditText) findViewById(R.id.shopinfo_eventname);
-        event_content = (EditText) findViewById(R.id.shopinfo_eventcontent);
+        category = (EditText) findViewById(R.id.shopinfo_cate);
         regi_button = (Button) findViewById(R.id.shopinfo_regibutton);
         shop_address = (TextView) findViewById(R.id.shopinfo_address);
 
@@ -186,8 +184,7 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
                     //Picasso.with(getApplicationContext()).load(getBbs_photo_url).error(R.drawable.ic_menu_noprofile).into(bbs_photo);
                     Picasso.with(getApplicationContext()).load(getBbs_photo_url).resize(640, 0).into(shop_image);
                     ShopInfoInsertTask task = new ShopInfoInsertTask();
-                    task.execute(getBbs_photo_url, shop_name.getText().toString(), shop_phone.getText().toString(), event_name.getText().toString(),
-                                        event_content.getText().toString(), mNowAddressKorea, String.valueOf(mLat), String.valueOf(mLon));
+                    task.execute(getBbs_photo_url, shop_name.getText().toString(), shop_phone.getText().toString(), category.getText().toString(), mNowAddressKorea, String.valueOf(mLat), String.valueOf(mLon));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -335,11 +332,10 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
             data.put("photo", params[0]);
             data.put("shopname", params[1]);
             data.put("shopphone", params[2]);
-            data.put("eventname", params[3]);
-            data.put("eventcontent", params[4]);
-            data.put("address",params[5]);
-            data.put("lat",params[6]);
-            data.put("lon",params[7]);
+            data.put("category", params[3]);
+            data.put("address",params[4]);
+            data.put("lat",params[5]);
+            data.put("lon",params[6]);
 
             String result = rh.sendPostRequest(urlString, data);
 

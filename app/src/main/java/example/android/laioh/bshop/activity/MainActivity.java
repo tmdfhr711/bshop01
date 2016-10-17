@@ -30,6 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -89,7 +90,35 @@ public class MainActivity extends AppCompatActivity
         Marker nowPosition = mGoogleMap.addMarker(new MarkerOptions().position(nowAddress).title(mNowAddressKorea));
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nowAddress, 15));
+        //mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(38, 127),7));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+    }
+
+    private void getMarkerItem(ArrayList<ShopInformation> item){
+
+        for (ShopInformation markerItem : item){
+            //Log.e("count : " , Integer.toString(count++));
+            addMarker(markerItem, false);
+        }
+    }
+
+    private Marker addMarker(ShopInformation markerItem, boolean isSelecteMarker){
+        LatLng position = new LatLng(Double.parseDouble(markerItem.getLat()), Double.parseDouble(markerItem.getLon()));
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.title(markerItem.getName());
+        markerOptions.position(position);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        //markerOptions.snippet(markerItem.getId());
+
+        /*Log.e("Marker id : ", Integer.toString(markerItem.getId()));
+        Log.e("Marker dialect : ", markerItem.getDialect());
+        Log.e("Marker lat : ", Double.toString(markerItem.getLatitude()));
+        Log.e("Marker lon : ", Double.toString(markerItem.getLongitude()));*/
+
+
+        Log.e("Marker Options", String.valueOf(markerOptions));
+        return mGoogleMap.addMarker(markerOptions);
     }
 
     @Override
@@ -244,6 +273,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         getShopListFromServer();
+        //getMarkerItem();
         terminateIfNotBLE();
         turnOnBluetooth();
     }
@@ -376,6 +406,7 @@ public class MainActivity extends AppCompatActivity
             super.onPostExecute(aVoid);
             mAdapter = new MyShopListAdapter(MainActivity.this, items);
             shop_listview.setAdapter(mAdapter);
+            getMarkerItem(items);
             loading.dismiss();
         }
 
@@ -388,6 +419,7 @@ public class MainActivity extends AppCompatActivity
             String query = params[0];
 
             data.put("user_id", query);
+            data.put("flag", "allshop");
 
             String result = rh.sendPostRequest(SERVER_URL,data);
             Log.e("result Data", result.toString());
