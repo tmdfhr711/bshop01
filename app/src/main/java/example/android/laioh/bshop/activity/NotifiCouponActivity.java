@@ -80,12 +80,11 @@ public class NotifiCouponActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.coupon_submit :
-                /*RegistMyCouponTask task = new RegistMyCouponTask();
-                task.execute("user1", getBeaconid, getShopid, getShopname, getEventname, getEventcontent);*/
                 Intent intent = new Intent(NotifiCouponActivity.this, ShopDetailActivity.class);
                 intent.putExtra("shopname", getShopname);
                 intent.putExtra("flag", 1);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.coupon_layout:

@@ -136,6 +136,11 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
         //Toast.makeText(this, mNowAddressKorea, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     class GetDetailShopInfoTask extends AsyncTask<String, Void, Void> {
 
         final String SERVER_URL = "http://210.117.181.66:8080/BShop/_bshop_shop_detailinfo.php";
