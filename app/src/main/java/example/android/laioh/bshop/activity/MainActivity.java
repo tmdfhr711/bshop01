@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import example.android.laioh.bshop.R;
+import example.android.laioh.bshop.adapter.MainShopListAdapter;
 import example.android.laioh.bshop.adapter.MyShopListAdapter;
 import example.android.laioh.bshop.model.ShopInformation;
 import example.android.laioh.bshop.util.GpsInfo;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 
     private RelativeLayout mapview_layout;
 
-    private MyShopListAdapter mAdapter;
+    private MainShopListAdapter mAdapter;
     private ArrayList<ShopInformation> items;
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -404,7 +405,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mAdapter = new MyShopListAdapter(MainActivity.this, items);
+            mAdapter = new MainShopListAdapter(MainActivity.this, items);
             shop_listview.setAdapter(mAdapter);
             getMarkerItem(items);
             loading.dismiss();

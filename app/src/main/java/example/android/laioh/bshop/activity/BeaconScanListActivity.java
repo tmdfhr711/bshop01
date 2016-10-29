@@ -25,8 +25,11 @@ public class BeaconScanListActivity extends AppCompatActivity {
     private ListView listview;
     private BeaconScanListAdapter mAdapter;
     private ArrayList<Beacon> mBeaconList;
+
     private Button stop_button;
+
     private CentralManager centralManager;
+
     private final int REQUEST_ENABLE_BT = 1000;
 
     @Override
@@ -45,16 +48,6 @@ public class BeaconScanListActivity extends AppCompatActivity {
             public void onPeripheralScan(Central central, final Peripheral peripheral) {
                 // TODO do something with the scanned peripheral(beacon)
                 Log.i("BeaconScanListActivity", "peripheral : " + peripheral);
-                /*boolean check = false;
-                for(int i = 0; i < mBeaconList.size(); i++) {
-                    if (mBeaconList.get(i).getAddress().equals(peripheral.getBDAddress())) {
-                        check = true;
-                    }
-                }
-                if (!check) {
-                    BLEConnection conn = new BLEConnection(BeaconScanListActivity.this, peripheral,)
-                    mBeaconList.add(new Beacon(peripheral.getBDName(), peripheral.getBDAddress(), peripheral.getModelNumber(), String.valueOf(peripheral.getMajor()), String.valueOf(peripheral.getMinor()), String.valueOf(peripheral.getDistance())));
-                }*/
                 runOnUiThread(new Runnable() {
                     public void run() {
                         mAdapter.addOrUpdateItem(peripheral);
@@ -62,8 +55,6 @@ public class BeaconScanListActivity extends AppCompatActivity {
                 });
             }
         });
-
-        //centralManager.startScanning();
 
         mAdapter = new BeaconScanListAdapter(this);
         listview.setAdapter(mAdapter);
@@ -77,12 +68,6 @@ public class BeaconScanListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 centralManager.stopScanning();
-                //ArrayList 중복제거
-                //HashSet<Beacon> listSet = new HashSet<Beacon>(mBeaconList);
-
-                //ArrayList<Beacon> beaconList = new ArrayList<Beacon>(listSet);
-                /*mAdapter = new BeaconScanListAdapter(BeaconScanListActivity.this, mBeaconList);
-                listview.setAdapter(mAdapter);*/
             }
         });
         mBeaconList = new ArrayList<>();
