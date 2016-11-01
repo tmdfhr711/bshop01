@@ -6,6 +6,10 @@
 
     <string name="action_settings">Settings</string>
     <string name="unknown">unknown</string>
+
+    <!--Navigation Drawer Resources-->
+    <string name="navigation_no_login">로그인 하기</string>
+
     <!--Signup Resources-->
     <string name="signup_title">회원가입</string>
 

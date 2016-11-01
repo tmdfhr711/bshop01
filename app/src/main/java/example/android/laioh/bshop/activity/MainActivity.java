@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity
     private boolean layoutFlag = true;
 
     private RelativeLayout mapview_layout;
+    private LinearLayout navigation_view;
+    private TextView user_login_tv;
+    private ImageView user_profile_iv;
+    private TextView user_nick_tv;
 
     private MainShopListAdapter mAdapter;
     private ArrayList<ShopInformation> items;
@@ -174,6 +179,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+
+        user_login_tv = (TextView) header.findViewById(R.id.navigation_user_login);
+        user_nick_tv = (TextView) header.findViewById(R.id.navigation_user_nick);
+        user_profile_iv = (ImageView) header.findViewById(R.id.navigation_user_profile_imageView);
+
+        navigation_view = (LinearLayout) header.findViewById(R.id.navigation_view);
+
+
+        navigation_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userSettingDialog();
+            }
+        });
 
         centralManager = CentralManager.getInstance();
         centralManager.init(getApplicationContext());
@@ -203,6 +223,8 @@ public class MainActivity extends AppCompatActivity
         checkForLogin();
 
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -336,8 +358,8 @@ public class MainActivity extends AppCompatActivity
         } else if (getLoginCheck.equals("login")){
             //현재 로그인 되어있는 경우
             //new CreateAuthUtil(getApplicationContext()).execute(mPref.getValue("user_num", ""), mPref.getValue("device_id", ""), mPref.getValue("gcm_reg_id", ""));
-            //user_login_tv.setText(mPref.getValue("user_id", ""));
-            //user_nick_tv.setText(mPref.getValue("user_nick", ""));
+            user_login_tv.setText(mPref.getValue("user_id", ""));
+            user_nick_tv.setText(mPref.getValue("user_nick", ""));
         }
     }
 
