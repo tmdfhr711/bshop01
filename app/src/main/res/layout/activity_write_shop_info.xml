@@ -13,7 +13,7 @@
             android:id="@+id/shopinfo_mainImage"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/ic_menu_picture"
             android:layout_weight="0.5"
             />
 

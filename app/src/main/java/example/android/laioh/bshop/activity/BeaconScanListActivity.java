@@ -27,7 +27,6 @@ public class BeaconScanListActivity extends AppCompatActivity {
     private BeaconScanListAdapter mAdapter;
     private ArrayList<Beacon> mBeaconList;
 
-    private Button stop_button;
 
     private CentralManager centralManager;
 
@@ -67,14 +66,6 @@ public class BeaconScanListActivity extends AppCompatActivity {
 
     private void init(){
         listview = (ListView) findViewById(R.id.scanlist_listview);
-        stop_button = (Button) findViewById(R.id.stop_scan);
-
-        stop_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                centralManager.stopScanning();
-            }
-        });
         mBeaconList = new ArrayList<>();
     }
 

@@ -11,16 +11,45 @@
     android:orientation="vertical"
     tools:context="example.android.laioh.bshop.activity.MyPageActivity">
 
-    <Button
-        android:id="@+id/mypage_myshop_button"
+    <LinearLayout
+        android:id="@+id/mypage_myshop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="내 가게정보"/>
+        android:orientation="horizontal"
+        android:gravity="left">
+        
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_margin="16dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_mypage_myshop"/>
+        <TextView
+            android:layout_margin="24dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="내가 등록한 가게"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mypage_mycoupon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_margin="16dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_mypage_coupon"/>
+        <TextView
+            android:layout_margin="24dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="내 쿠폰함"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/mypage_mycoupon_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="내 쿠폰 확인"/>
+    </LinearLayout>
 
 </LinearLayout>

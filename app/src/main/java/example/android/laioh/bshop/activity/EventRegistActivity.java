@@ -81,6 +81,13 @@ public class EventRegistActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(EventRegistActivity.this, MyShopListActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     class RegistEventInfoTask extends AsyncTask<String, Void, String> {
 

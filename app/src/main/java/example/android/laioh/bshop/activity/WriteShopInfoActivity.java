@@ -46,6 +46,7 @@ import java.util.HashMap;
 
 import example.android.laioh.bshop.R;
 import example.android.laioh.bshop.util.GpsInfo;
+import example.android.laioh.bshop.util.RbPreference;
 import example.android.laioh.bshop.util.RequestHandler;
 
 public class WriteShopInfoActivity extends AppCompatActivity implements View.OnClickListener,OnMapReadyCallback {
@@ -69,6 +70,7 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
     private double mLon;
     private String mNowAddressKorea;
 
+    private RbPreference mPref = new RbPreference(WriteShopInfoActivity.this);
     private static final int GET_PICTURE_URI = 101;
 
     @Override
@@ -155,6 +157,14 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
                 bbs_photo_upload.execute();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(WriteShopInfoActivity.this, MyPageActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     class UploadBbsImgTask extends AsyncTask<Void, Void, String> {
@@ -313,7 +323,7 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
             super.onPostExecute(s);
             if (s.equals("success")) {
                 dialog.dismiss();
-                Intent intent = new Intent(WriteShopInfoActivity.this, MainActivity.class);
+                Intent intent = new Intent(WriteShopInfoActivity.this, MyPageActivity.class);
                 startActivity(intent);
                 finish();
             } else {
@@ -329,6 +339,7 @@ public class WriteShopInfoActivity extends AppCompatActivity implements View.OnC
 
             HashMap<String,String> data = new HashMap<>();
 
+            data.put("userid", mPref.getValue("user_id", "aaaaa"));
             data.put("photo", params[0]);
             data.put("shopname", params[1]);
             data.put("shopphone", params[2]);

@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                mPref.removeAllValue();
+                //mPref.removeAllValue();
                 if (layoutFlag) {
                     shop_listview.setVisibility(View.INVISIBLE);
                     mapview_layout.setVisibility(View.VISIBLE);
@@ -264,22 +264,42 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            Intent intent = new Intent(MainActivity.this, MyPageActivity.class);
-            startActivity(intent);
-            finish();
-        } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(MainActivity.this, WriteShopInfoActivity.class);
-            startActivity(intent);
-            finish();
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_all) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","all");
+        } else if (id == R.id.nav_cafe) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","카페");
+        } else if (id == R.id.nav_food) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","음식점");
+        } else if (id == R.id.nav_clothes) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","의류");
+        } else if (id == R.id.nav_bakery) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","베이커리");
+        } else if (id == R.id.nav_fitness) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","휘트니스");
+        } else if (id == R.id.nav_alcohol) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","술집");
+        } else if (id == R.id.nav_sports) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","스포츠");
+        } else if (id == R.id.nav_cosmetics) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","화장품");
+        } else if (id == R.id.nav_icecream) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","아이스크림");
+        } else if (id == R.id.nav_faststore) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","편의점");
+        } else if (id == R.id.nav_copy) {
+            GetShopListTask task = new GetShopListTask();
+            task.execute("*","제본");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -539,11 +559,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getShopListFromServer(){
-        GetMyShopListTask task = new GetMyShopListTask();
-        task.execute("*");
+        GetShopListTask task = new GetShopListTask();
+        task.execute("*","all");
     }
 
-    class GetMyShopListTask extends AsyncTask<String, Void, Void> {
+    class GetShopListTask extends AsyncTask<String, Void, Void> {
 
         final String SERVER_URL = "http://210.117.181.66:8080/BShop/_bshop_myshop_list.php";
         RequestHandler rh = new RequestHandler();
@@ -574,9 +594,10 @@ public class MainActivity extends AppCompatActivity
             HashMap<String,String> data = new HashMap<>();
 
             String query = params[0];
+            String flag = params[1];
 
             data.put("user_id", query);
-            data.put("flag", "allshop");
+            data.put("flag", flag);
 
             String result = rh.sendPostRequest(SERVER_URL,data);
             Log.e("result Data", result.toString());

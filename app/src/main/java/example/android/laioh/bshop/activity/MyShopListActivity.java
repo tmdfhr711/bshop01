@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import example.android.laioh.bshop.R;
 import example.android.laioh.bshop.adapter.MyShopListAdapter;
 import example.android.laioh.bshop.model.ShopInformation;
+import example.android.laioh.bshop.util.RbPreference;
 import example.android.laioh.bshop.util.RequestHandler;
 
 public class MyShopListActivity extends AppCompatActivity {
@@ -26,7 +29,9 @@ public class MyShopListActivity extends AppCompatActivity {
     private MyShopListAdapter mAdapter;
     private ArrayList<ShopInformation> items;
 
+    private ImageView addshop_iv;
     private ListView shop_listview;
+    public RbPreference mPref = new RbPreference(MyShopListActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +43,22 @@ public class MyShopListActivity extends AppCompatActivity {
 
     private void init(){
         shop_listview = (ListView) findViewById(R.id.myshop_listview);
+        addshop_iv = (ImageView) findViewById(R.id.myshop_add);
+
+        addshop_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyShopListActivity.this, WriteShopInfoActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         items = new ArrayList<>();
 }
 
     private void getShopListFromServer(){
         GetMyShopListTask task = new GetMyShopListTask();
-        task.execute("user1");
+        task.execute(mPref.getValue("user_id",""));
     }
 
     @Override

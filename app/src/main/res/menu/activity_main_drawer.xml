@@ -2,34 +2,59 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="카테고리">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_all"
+                android:icon="@drawable/ic_menu_all"
+                android:title="전체"/>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:id="@+id/nav_cafe"
+                android:icon="@drawable/ic_menu_coffee"
+                android:title="카페"/>
+            <item
+                android:id="@+id/nav_food"
+                android:icon="@drawable/ic_menu_food"
+                android:title="음식점"/>
+            <item
+                android:id="@+id/nav_clothes"
+                android:icon="@drawable/ic_menu_clothes"
+                android:title="의류"/>
+            <item
+                android:id="@+id/nav_bakery"
+                android:icon="@drawable/ic_menu_bakery"
+                android:title="베이커리"/>
+            <item
+                android:id="@+id/nav_fitness"
+                android:icon="@drawable/ic_menu_fitness"
+                android:title="휘트니스"/>
+            <item
+                android:id="@+id/nav_alcohol"
+                android:icon="@drawable/ic_menu_alcohol"
+                android:title="술집"/>
+            <item
+                android:id="@+id/nav_sports"
+                android:icon="@drawable/ic_menu_sports"
+                android:title="스포츠"/>
+            <item
+                android:id="@+id/nav_cosmetics"
+                android:icon="@drawable/ic_menu_cosmetics"
+                android:title="화장품"/>
+            <item
+                android:id="@+id/nav_icecream"
+                android:icon="@drawable/ic_menu_icecream"
+                android:title="아이스크림"/>
+            <item
+                android:id="@+id/nav_faststore"
+                android:icon="@drawable/ic_menu_store"
+                android:title="편의점"/>
+            <item
+                android:id="@+id/nav_copy"
+                android:icon="@drawable/ic_menu_copy"
+                android:title="제본"/>
         </menu>
     </item>
 

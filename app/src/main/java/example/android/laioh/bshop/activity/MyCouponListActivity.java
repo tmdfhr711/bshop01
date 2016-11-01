@@ -19,6 +19,7 @@ import example.android.laioh.bshop.adapter.MyCouponListAdapter;
 import example.android.laioh.bshop.adapter.MyShopListAdapter;
 import example.android.laioh.bshop.model.Coupon;
 import example.android.laioh.bshop.model.ShopInformation;
+import example.android.laioh.bshop.util.RbPreference;
 import example.android.laioh.bshop.util.RequestHandler;
 
 public class MyCouponListActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class MyCouponListActivity extends AppCompatActivity {
     private ArrayList<Coupon> items;
 
     private ListView coupon_listview;
-
+    public RbPreference mPref = new RbPreference(MyCouponListActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class MyCouponListActivity extends AppCompatActivity {
 
     private void getCouponDataFromServer(){
         GetMyCouponListTask task = new GetMyCouponListTask();
-        task.execute("user1");
+        task.execute(mPref.getValue("user_id",""));
     }
 
     @Override

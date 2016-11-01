@@ -16,4 +16,13 @@
         android:layout_height="match_parent">
 
     </ListView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/myshop_add"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_mypage_add"
+        android:layout_alignBottom="@+id/myshop_listview"
+        android:layout_alignRight="@+id/myshop_listview"
+        android:layout_alignEnd="@+id/myshop_listview"/>
 </RelativeLayout>

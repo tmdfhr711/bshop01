@@ -30,6 +30,7 @@ import example.android.laioh.bshop.R;
 import example.android.laioh.bshop.adapter.MyShopListAdapter;
 import example.android.laioh.bshop.model.ShopInformation;
 import example.android.laioh.bshop.util.GpsInfo;
+import example.android.laioh.bshop.util.RbPreference;
 import example.android.laioh.bshop.util.RequestHandler;
 
 public class ShopDetailActivity extends AppCompatActivity implements View.OnClickListener,OnMapReadyCallback {
@@ -57,7 +58,7 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     private double mLat;
     private double mLon;
     private String mNowAddressKorea;
-
+    public RbPreference mPref = new RbPreference(ShopDetailActivity.this);
     private String name, phone, photo, address, lat, lon, eventname, eventcontent, cate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +112,12 @@ public class ShopDetailActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.shopdetail_coupon :
-                RegistMyCouponTask task = new RegistMyCouponTask();
-                task.execute("user1", name, photo, eventname, eventcontent);
+                if(mPref.getValue("login","").equals("") || mPref.getValue("login","").equals("logout")) {
+                    Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_LONG).show();
+                } else {
+                    RegistMyCouponTask task = new RegistMyCouponTask();
+                    task.execute(mPref.getValue("user_id",""), name, photo, eventname, eventcontent);
+                }
                 break;
         }
     }
