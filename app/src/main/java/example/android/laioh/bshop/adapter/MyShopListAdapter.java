@@ -1,7 +1,10 @@
 package example.android.laioh.bshop.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 
 import example.android.laioh.bshop.R;
 import example.android.laioh.bshop.activity.BeaconInfoWriteActivity;
+import example.android.laioh.bshop.activity.BeaconScanListActivity;
 import example.android.laioh.bshop.model.ShopInformation;
 
 /**
@@ -71,15 +75,13 @@ public class MyShopListAdapter extends BaseAdapter {
             Picasso.with(context).load(shop.getPhoto()).resize(640, 0).into(holder.photo);
         }
 
-        /*convertView.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, BeaconInfoWriteActivity.class);
-                intent.putExtra("peripheral", peripheral);
-                context.startActivity(intent);
+                showDialog(context, shop.getName(), shop.getId());
             }
         });
-
+    /*
         convertView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -104,5 +106,42 @@ public class MyShopListAdapter extends BaseAdapter {
         public TextView phone;
         public ImageView photo;
         public TextView address;
+    }
+
+    private void showDialog(final Context context, final String name, final String id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setTitle(name)
+                .setMessage("어떤 작업을 진행하실래요??")
+                .setCancelable(false)
+                .setPositiveButton("비콘등록", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(context, BeaconScanListActivity.class);
+                        intent.putExtra("name", name);
+                        intent.putExtra("id", id);
+                        context.startActivity(intent);
+                        dialog.dismiss();
+                        ((Activity)context).finish();
+                    }
+                })
+                .setNegativeButton("가게정보수정", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(context, BeaconScanListActivity.class);
+                        context.startActivity(intent);
+                        dialog.dismiss();
+                        ((Activity)context).finish();
+                    }
+                })
+                .setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 }

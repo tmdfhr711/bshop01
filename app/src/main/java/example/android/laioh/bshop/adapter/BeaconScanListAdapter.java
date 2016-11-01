@@ -1,5 +1,6 @@
 package example.android.laioh.bshop.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 
 import example.android.laioh.bshop.R;
 import example.android.laioh.bshop.activity.BeaconInfoWriteActivity;
+import example.android.laioh.bshop.activity.EventRegistActivity;
 import example.android.laioh.bshop.model.Beacon;
 
 /**
@@ -31,15 +33,20 @@ public class BeaconScanListAdapter extends BaseAdapter {
     private final String COLON = " : ";
     private final String unknown;
 
+    private String shopname;
+    private String shopid;
+
     private boolean isConnectingButtonTouching = false;
 
     private ArrayList<Peripheral> items = new ArrayList<Peripheral>();
     private HashMap<String, Peripheral> itemMap = new HashMap<String, Peripheral>();
     private LayoutInflater inflater;
 
-    public BeaconScanListAdapter(Context context) {
+    public BeaconScanListAdapter(Context context, String name, String id) {
         unknown = context.getString(R.string.unknown);
         inflater = LayoutInflater.from(context);
+        this.shopname = name;
+        this.shopid = id;
     }
 
     public synchronized void addOrUpdateItem(Peripheral peripheral) {
@@ -111,10 +118,13 @@ public class BeaconScanListAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, String.valueOf(peripheral.getMinor()), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, BeaconInfoWriteActivity.class);
+                //Toast.makeText(context, String.valueOf(peripheral.getMinor()), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, EventRegistActivity.class);
                 intent.putExtra("peripheral", peripheral);
+                intent.putExtra("name", shopname);
+                intent.putExtra("id", shopid);
                 context.startActivity(intent);
+                ((Activity) context).finish();
             }
         });
 

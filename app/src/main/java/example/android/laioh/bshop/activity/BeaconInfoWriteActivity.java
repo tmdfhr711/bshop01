@@ -28,6 +28,9 @@ public class BeaconInfoWriteActivity extends AppCompatActivity implements Observ
     private Peripheral mPeripheral;
     private CentralManager mCentralManager;
 
+    private String shopname;
+    private String shopid;
+
     private EditText name_edt;
     private EditText address_edt;
     private EditText uuid_edt;
@@ -63,6 +66,9 @@ public class BeaconInfoWriteActivity extends AppCompatActivity implements Observ
     private void getDataFromIntent(){
         mPeripheral = getIntent().getParcelableExtra("peripheral");
 
+        this.shopname = getIntent().getStringExtra("name");
+        this.shopid = getIntent().getStringExtra("id");
+        
         if (mPeripheral == null) {
             Toast.makeText(this, "정보를 얻어오지 못했습니다.", Toast.LENGTH_SHORT).show();
         }

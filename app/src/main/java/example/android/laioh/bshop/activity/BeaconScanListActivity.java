@@ -1,5 +1,6 @@
 package example.android.laioh.bshop.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,15 +33,19 @@ public class BeaconScanListActivity extends AppCompatActivity {
 
     private final int REQUEST_ENABLE_BT = 1000;
 
+    private String shopname;
+    private String shopid;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beacon_scan_list);
 
         init();
-
+        getDataFromIntent();
         centralManager = CentralManager.getInstance();
-        centralManager.init(getApplicationContext());
+        //centralManager.init(this);
 
 
         centralManager.setPeripheralScanListener(new PeripheralScanListener() {
@@ -56,7 +61,7 @@ public class BeaconScanListActivity extends AppCompatActivity {
             }
         });
 
-        mAdapter = new BeaconScanListAdapter(this);
+        mAdapter = new BeaconScanListAdapter(this, this.shopname, this.shopid);
         listview.setAdapter(mAdapter);
     }
 
@@ -71,6 +76,20 @@ public class BeaconScanListActivity extends AppCompatActivity {
             }
         });
         mBeaconList = new ArrayList<>();
+    }
+
+    private void getDataFromIntent(){
+        Intent intent = getIntent();
+        shopname = intent.getStringExtra("name");
+        shopid = intent.getStringExtra("id");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(BeaconScanListActivity.this, MyShopListActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
